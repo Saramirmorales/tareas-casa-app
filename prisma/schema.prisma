@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String           @id @default(cuid())
+  email        String           @unique
+  name         String?
+  createdAt    DateTime         @default(now())
+  houses       HouseMember[]
+  completions  TaskCompletion[]
+}
+
+model House {
+  id        String          @id @default(cuid())
+  name      String
+  createdAt DateTime        @default(now())
+  members   HouseMember[]
+  tasks     Task[]
+}
+
+model HouseMember {
+  userId  String
+  houseId String
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  house   House  @relation(fields: [houseId], references: [id], onDelete: Cascade)
+
+  @@id([userId, houseId])
+}
+
+model Task {
+  id          String           @id @default(cuid())
+  houseId     String
+  house       House            @relation(fields: [houseId], references: [id], onDelete: Cascade)
+  title       String
+  points      Int
+  type        String           @default("general")
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  completions TaskCompletion[]
+}
+
+model TaskCompletion {
+  id          String   @id @default(cuid())
+  taskId      String
+  task        Task     @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  completedAt DateTime @default(now())
+
+  @@index([taskId, completedAt])
+  @@index([userId, completedAt])
+}
