@@ -17,7 +17,7 @@ export function AddMemberForm({ houseId }: { houseId: string }) {
         setPending(true);
         const res = await addHouseMember(houseId, formData);
         setPending(false);
-        if (res && "error" in res) setError(res.error);
+        if (res && "error" in res) setError(res.error ?? null);
         else router.refresh();
       }}
     >

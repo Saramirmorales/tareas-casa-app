@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { addCompletion, deleteCompletion } from "@/actions/task";
 import { ConfirmDialog } from "@/components/ConfirmDialog";
@@ -64,7 +64,7 @@ export function WeekTasks({ houseId, days, tasks, completions, disabled }: Props
     setBusy(true);
     const res = await addCompletion(pendingAdd.taskId, houseId, pendingAdd.dayKey);
     setBusy(false);
-    if ("error" in res && res.error) {
+    if (res && "error" in res && res.error) {
       alert(res.error);
       return;
     }
@@ -80,7 +80,7 @@ export function WeekTasks({ houseId, days, tasks, completions, disabled }: Props
     setBusy(true);
     const res = await deleteCompletion(pendingDelete.id, houseId);
     setBusy(false);
-    if ("error" in res && res.error) {
+    if (res && "error" in res && res.error) {
       alert(res.error);
       return;
     }
@@ -127,7 +127,7 @@ export function WeekTasks({ houseId, days, tasks, completions, disabled }: Props
           ))}
 
           {tasks.map((task) => (
-            <div key={task.id} className="contents">
+            <Fragment key={task.id}>
               <div className="flex flex-col justify-center bg-white px-2 py-2">
                 <span className="font-medium text-slate-900">{task.title}</span>
                 <span className="text-xs text-slate-500">
@@ -150,7 +150,7 @@ export function WeekTasks({ houseId, days, tasks, completions, disabled }: Props
                           disabled={disabled || busy}
                           title="Quitar"
                           className={cn(
-                            "max-w-full truncate rounded-md border border-teal-100 bg-teal-50 px-1.5 py-0.5 text-left text-[11px] text-teal-900",
+                            "max-w-full truncate rounded-md border border-blue-100 bg-blue-50 px-1.5 py-0.5 text-left text-[11px] text-blue-900",
                             "hover:border-red-200 hover:bg-red-50 hover:text-red-800",
                             disabled && "opacity-50",
                           )}
@@ -163,7 +163,7 @@ export function WeekTasks({ houseId, days, tasks, completions, disabled }: Props
                     <button
                       type="button"
                       disabled={disabled || busy}
-                      className="mt-auto rounded-md border border-dashed border-slate-200 py-1 text-[11px] text-slate-500 hover:border-teal-300 hover:text-teal-700 disabled:opacity-50"
+                      className="mt-auto rounded-md border border-dashed border-slate-200 py-1 text-[11px] text-slate-500 hover:border-blue-300 hover:text-blue-700 disabled:opacity-50"
                       onClick={() => setPendingAdd({ taskId: task.id, dayKey: d.key })}
                     >
                       + Añadir
@@ -171,7 +171,7 @@ export function WeekTasks({ houseId, days, tasks, completions, disabled }: Props
                   </div>
                 );
               })}
-            </div>
+            </Fragment>
           ))}
         </div>
       </div>
@@ -205,7 +205,7 @@ export function WeekTasks({ houseId, days, tasks, completions, disabled }: Props
           <button
             type="button"
             disabled={busy}
-            className="font-medium text-teal-700 hover:underline disabled:opacity-50"
+            className="font-medium text-blue-700 hover:underline disabled:opacity-50"
             onClick={doUndo}
           >
             Deshacer

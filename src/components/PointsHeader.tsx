@@ -9,7 +9,7 @@ export function PointsHeader({ members }: { members: MemberPoints[] }) {
         {members.map((m) => (
           <span
             key={m.userId}
-            className="inline-flex items-center gap-1 rounded-full bg-teal-50 px-3 py-1 text-sm text-teal-900"
+            className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-3 py-1 text-sm text-blue-900"
           >
             <span className="max-w-[10rem] truncate">{m.email}</span>
             <span className="font-semibold tabular-nums">{m.points}</span>

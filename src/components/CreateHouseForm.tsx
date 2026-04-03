@@ -15,7 +15,7 @@ export function CreateHouseForm() {
         setPending(true);
         try {
           const res = await createHouse(formData);
-          if (res && "error" in res) setError(res.error);
+          if (res && "error" in res) setError(res.error ?? null);
         } finally {
           setPending(false);
         }
@@ -36,7 +36,7 @@ export function CreateHouseForm() {
       <button
         type="submit"
         disabled={pending}
-        className="rounded-lg bg-teal-600 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-700 disabled:opacity-60"
+        className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 disabled:opacity-60"
       >
         {pending ? "Creando…" : "Crear casa"}
       </button>

@@ -42,7 +42,7 @@ export function WeekNav({
         </Link>
         <Link
           href={`/houses/${houseId}?w=0`}
-          className="rounded-lg px-2 py-1.5 text-sm text-teal-700 hover:underline"
+          className="rounded-lg px-2 py-1.5 text-sm text-blue-700 hover:underline"
         >
           Esta semana
         </Link>

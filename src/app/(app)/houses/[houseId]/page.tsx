@@ -121,7 +121,7 @@ export default async function HousePage({
     <div className="space-y-8">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <Link href="/houses" className="text-xs font-medium text-teal-700 hover:underline">
+          <Link href="/houses" className="text-xs font-medium text-blue-700 hover:underline">
             ← Casas
           </Link>
           <h1 className="mt-1 text-2xl font-semibold text-slate-900">{house.name}</h1>

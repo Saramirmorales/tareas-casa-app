@@ -21,7 +21,7 @@ export default async function AppLayout({
     <div className="min-h-screen">
       <header className="border-b border-slate-200 bg-white/90 backdrop-blur">
         <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3">
-          <Link href="/houses" className="text-sm font-semibold text-teal-800 hover:underline">
+          <Link href="/houses" className="text-sm font-semibold text-blue-800 hover:underline">
             Tareas en casa
           </Link>
           <div className="flex items-center gap-3 text-sm text-slate-600">

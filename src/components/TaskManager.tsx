@@ -63,7 +63,7 @@ export function TaskManager({ houseId, tasks }: { houseId: string; tasks: Task[]
         <h2 className="text-sm font-semibold text-slate-900">Tareas</h2>
         <button
           type="button"
-          className="rounded-lg bg-teal-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-teal-700"
+          className="rounded-lg bg-blue-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-blue-700"
           onClick={() => setOpenCreate(true)}
         >
           Nueva tarea
@@ -88,7 +88,7 @@ export function TaskManager({ houseId, tasks }: { houseId: string; tasks: Task[]
               <div className="flex gap-2">
                 <button
                   type="button"
-                  className="text-xs font-medium text-teal-700 hover:underline"
+                  className="text-xs font-medium text-blue-700 hover:underline"
                   onClick={() => setEditing(t)}
                 >
                   Editar
@@ -221,7 +221,7 @@ function TaskModal({
             <button
               type="submit"
               disabled={busy}
-              className="rounded-lg bg-teal-600 px-3 py-2 text-sm font-medium text-white hover:bg-teal-700 disabled:opacity-60"
+              className="rounded-lg bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-60"
             >
               {busy ? "Guardando…" : "Guardar"}
             </button>

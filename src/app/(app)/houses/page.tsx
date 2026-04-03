@@ -40,7 +40,7 @@ export default async function HousesPage() {
             <li key={h.id}>
               <Link
                 href={`/houses/${h.id}`}
-                className="flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm transition hover:border-teal-200 hover:bg-teal-50/40"
+                className="flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm transition hover:border-blue-200 hover:bg-blue-50/40"
               >
                 <span className="font-medium text-slate-900">{h.name}</span>
                 <span className="text-xs text-slate-500">
