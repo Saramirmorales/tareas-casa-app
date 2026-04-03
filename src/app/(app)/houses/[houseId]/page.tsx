@@ -1,10 +1,13 @@
 import { AddMemberForm } from "@/components/AddMemberForm";
+import { CopyInviteLinkButton } from "@/components/CopyInviteLinkButton";
+import { DeleteHouseButton } from "@/components/DeleteHouseButton";
 import { PointsHeader } from "@/components/PointsHeader";
 import { StatsPanel } from "@/components/StatsPanel";
 import { TaskManager } from "@/components/TaskManager";
 import { WeekNav } from "@/components/WeekNav";
 import { WeekTasks } from "@/components/WeekTasks";
 import { prisma } from "@/lib/prisma";
+import { firstSearchParam } from "@/lib/searchParams";
 import { getSessionUserId } from "@/lib/session";
 import { dayKey, getWeekDays } from "@/lib/week";
 import { endOfDay, format, startOfDay } from "date-fns";
@@ -17,11 +20,11 @@ export default async function HousePage({
   searchParams,
 }: {
   params: Promise<{ houseId: string }>;
-  searchParams: Promise<{ w?: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const { houseId } = await params;
   const sp = await searchParams;
-  const w = parseInt(sp.w ?? "0", 10);
+  const w = parseInt(firstSearchParam(sp.w) ?? "0", 10);
   const weekOffset = Number.isFinite(w) ? w : 0;
 
   const userId = await getSessionUserId();
@@ -126,6 +129,7 @@ export default async function HousePage({
           </Link>
           <h1 className="mt-1 text-2xl font-semibold text-slate-900">{house.name}</h1>
         </div>
+        <CopyInviteLinkButton inviteCode={house.inviteCode} />
       </div>
 
       {house.members.length < 2 ? (
@@ -158,7 +162,7 @@ export default async function HousePage({
         />
       </section>
 
-      <section className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+      <section className="rounded-xl border border-slate-200 bg-white p-5 shadow-xs">
         <h2 className="text-sm font-semibold text-slate-900">Miembros</h2>
         <ul className="mt-3 space-y-1 text-sm text-slate-700">
           {house.members.map((m) => (
@@ -175,6 +179,8 @@ export default async function HousePage({
         pointsPerUser={pointsPerUser}
         byType={byType}
       />
+
+      <DeleteHouseButton houseId={house.id} houseName={house.name} />
     </div>
   );
 }

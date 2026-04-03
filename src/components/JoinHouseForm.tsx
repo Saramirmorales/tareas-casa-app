@@ -2,9 +2,14 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { loginWithEmail } from "@/actions/auth";
+import { loginWithEmailAndInvite } from "@/actions/auth";
 
-export function LoginForm() {
+type Props = {
+  inviteCode: string;
+  houseName: string;
+};
+
+export function JoinHouseForm({ inviteCode, houseName }: Props) {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [pending, setPending] = useState(false);
@@ -12,21 +17,29 @@ export function LoginForm() {
   async function onSubmit(formData: FormData) {
     setError(null);
     setPending(true);
-    const res = await loginWithEmail(formData);
+    const res = await loginWithEmailAndInvite(formData);
     setPending(false);
+
     if (!res) {
       setError("No se pudo conectar. Prueba de nuevo.");
       return;
     }
-    if ("error" in res && res.error) setError(res.error);
-    else router.push("/houses");
+    if ("error" in res && res.error) {
+      setError(res.error);
+      return;
+    }
+    router.push(`/houses/${res.houseId}`);
   }
 
   return (
-    <form action={onSubmit} className="flex w-full max-w-sm flex-col gap-4">
+    <form action={onSubmit} className="flex w-full flex-col gap-4">
+      <input type="hidden" name="inviteCode" value={inviteCode} />
+      <p className="text-sm text-slate-600">
+        Te han invitado a <span className="font-semibold text-slate-900">{houseName}</span>.
+      </p>
       <div>
         <label htmlFor="email" className="mb-1 block text-sm font-medium text-slate-700">
-          Email
+          Tu email
         </label>
         <input
           id="email"
@@ -44,11 +57,8 @@ export function LoginForm() {
         disabled={pending}
         className="rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 disabled:opacity-60"
       >
-        {pending ? "Entrando…" : "Entrar"}
+        {pending ? "Uniendo…" : "Entrar y unirme"}
       </button>
-      <p className="text-center text-xs text-slate-500">
-        Sin contraseña: solo identificamos tu cuenta por email.
-      </p>
     </form>
   );
 }

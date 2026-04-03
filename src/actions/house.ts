@@ -49,3 +49,14 @@ export async function addHouseMember(houseId: string, formData: FormData) {
   revalidatePath(`/houses/${houseId}`);
   return { ok: true as const };
 }
+
+export async function deleteHouse(houseId: string) {
+  const userId = await requireUser();
+  const member = await prisma.houseMember.findUnique({
+    where: { userId_houseId: { userId, houseId } },
+  });
+  if (!member) return { error: "No perteneces a esta casa." };
+  await prisma.house.delete({ where: { id: houseId } });
+  revalidatePath("/houses");
+  return { ok: true as const };
+}

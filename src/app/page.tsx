@@ -7,8 +7,8 @@ export default async function Home() {
   if (id) redirect("/houses");
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-slate-50 to-white px-4 py-16">
-      <div className="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+    <main className="flex min-h-screen flex-col items-center justify-center bg-linear-to-b from-slate-50 to-white px-4 py-16">
+      <div className="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-8 shadow-xs">
         <h1 className="text-center text-2xl font-semibold tracking-tight text-slate-900">
           Tareas en casa
         </h1>

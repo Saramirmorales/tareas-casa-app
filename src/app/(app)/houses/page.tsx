@@ -24,7 +24,7 @@ export default async function HousesPage() {
         </p>
       </div>
 
-      <section className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+      <section className="rounded-xl border border-slate-200 bg-white p-5 shadow-xs">
         <h2 className="text-sm font-semibold text-slate-900">Nueva casa</h2>
         <p className="mt-1 text-xs text-slate-500">Te añadimos como miembro automáticamente.</p>
         <div className="mt-4">
@@ -40,7 +40,7 @@ export default async function HousesPage() {
             <li key={h.id}>
               <Link
                 href={`/houses/${h.id}`}
-                className="flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm transition hover:border-blue-200 hover:bg-blue-50/40"
+                className="flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-xs transition hover:border-blue-200 hover:bg-blue-50/40"
               >
                 <span className="font-medium text-slate-900">{h.name}</span>
                 <span className="text-xs text-slate-500">

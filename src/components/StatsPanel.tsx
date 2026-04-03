@@ -10,7 +10,7 @@ export function StatsPanel({
   byType: Row[];
 }) {
   return (
-    <section className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+    <section className="rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
       <h2 className="mb-3 text-sm font-semibold text-slate-900">Estadísticas (esta semana)</h2>
       <div className="grid gap-4 sm:grid-cols-3">
         <div>

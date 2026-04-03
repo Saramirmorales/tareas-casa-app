@@ -107,7 +107,7 @@ export function WeekTasks({ houseId, days, tasks, completions, disabled }: Props
 
   return (
     <div className="relative">
-      <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm">
+      <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-xs">
         <div
           className="grid min-w-[720px] gap-px bg-slate-200"
           style={{

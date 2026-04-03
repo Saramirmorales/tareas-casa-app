@@ -3,7 +3,7 @@ type MemberPoints = { userId: string; email: string; points: number };
 export function PointsHeader({ members }: { members: MemberPoints[] }) {
   if (members.length === 0) return null;
   return (
-    <div className="flex flex-wrap items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
+    <div className="flex flex-wrap items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-xs">
       <span className="text-sm font-medium text-slate-500">Puntos (esta semana)</span>
       <div className="flex flex-wrap gap-2">
         {members.map((m) => (

@@ -58,7 +58,7 @@ export function TaskManager({ houseId, tasks }: { houseId: string; tasks: Task[]
   }
 
   return (
-    <section className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+    <section className="rounded-xl border border-slate-200 bg-white p-4 shadow-xs">
       <div className="mb-3 flex items-center justify-between gap-2">
         <h2 className="text-sm font-semibold text-slate-900">Tareas</h2>
         <button

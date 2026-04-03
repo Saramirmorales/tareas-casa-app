@@ -26,7 +26,7 @@ export function WeekNav({
   const next = weekOffset + 1;
 
   return (
-    <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
+    <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-xs">
       <div className="flex flex-wrap items-center gap-2">
         <Link
           href={`/houses/${houseId}?w=${prev}`}
